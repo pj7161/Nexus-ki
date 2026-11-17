@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: nexus-ai-private
+    runtime: node
+    plan: starter
+    buildCommand: ""
+    startCommand: "npm start"
+    healthCheckPath: /api/session
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: API_KEY
+        sync: false
+      - key: IMAGE_API_KEY
+        sync: false
+      - key: BRAVE_SEARCH_API_KEY
+        sync: false
+      - key: REPLICATE_API_TOKEN
+        sync: false
+      - key: VIDEO_MODEL
+        sync: false

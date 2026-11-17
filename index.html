@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#080b12">
+  <meta name="description" content="NEXUS AI – dein privater KI-Workspace.">
+  <title>NEXUS AI · Private Workspace</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.8.0/mammoth.browser.min.js" defer></script>
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+  <section class="login-screen" id="loginScreen" hidden>
+    <div class="login-card">
+      <div class="brand-mark large"><i></i><i></i><i></i></div>
+      <div class="eyebrow">PRIVATE INTELLIGENCE SYSTEM</div>
+      <h1>NEXUS<span>AI</span></h1>
+      <p>Dein persönlicher KI-Workspace. Nur für dich.</p>
+      <form id="loginForm">
+        <label for="passwordInput">ZUGANGSPASSWORT</label>
+        <div class="password-wrap"><input id="passwordInput" type="password" autocomplete="current-password" placeholder="Passwort eingeben" required><button type="button" id="togglePassword" aria-label="Passwort anzeigen">◉</button></div>
+        <button class="primary-button login-submit" type="submit"><span>Anmelden</span><b>↗</b></button>
+        <p class="login-error" id="loginError" role="alert"></p>
+      </form>
+      <div class="login-foot"><span class="secure-dot"></span> PRIVATE SESSION · ENCRYPTED TRANSPORT</div>
+    </div>
+  </section>
+
+  <div class="app-shell" id="appShell" hidden>
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#chat" aria-label="NEXUS AI"><span class="brand-mark"><i></i><i></i><i></i></span><span class="brand-name">NEXUS<span>AI</span><small>PRIVATE WORKSPACE</small></span></a>
+      <button class="new-chat" id="newChatBtn"><span>＋</span> Neuer Chat <kbd>⌘ K</kbd></button>
+      <div class="side-label">WORKSPACE</div>
+      <nav class="side-nav" aria-label="Hauptnavigation">
+        <button class="nav-item active" data-view="chat"><span>◈</span> KI-Chat</button>
+        <button class="nav-item" data-view="image"><span>✧</span> Image Studio <em id="imageNavStatus"></em></button>
+        <button class="nav-item" data-view="video"><span>▣</span> Video Studio <em id="videoNavStatus"></em></button>
+        <button class="nav-item" data-view="files"><span>▤</span> Datei-Analyse</button>
+        <button class="nav-item" data-view="voice"><span>⌁</span> Voice Studio</button>
+        <button class="nav-item" data-view="gallery"><span>▧</span> Galerie</button>
+        <button class="nav-item" data-view="library"><span>☷</span> Chat-Verlauf</button>
+      </nav>
+      <div class="side-label recent-label">LETZTE CHATS</div><div class="history-list" id="historyList"><p class="empty-history">Noch keine Unterhaltungen.</p></div>
+      <div class="sidebar-bottom">
+        <div class="connection-card"><div class="connection-top"><span class="status-dot" id="connectionDot"></span><span id="connectionLabel">Prüfe Verbindung</span></div><p id="connectionDescription">Dienste werden geladen.</p><button id="settingsBtn" class="text-button">Systemeinstellungen ↗</button></div>
+        <div class="profile-row"><div class="avatar">P</div><div><strong>Privater Workspace</strong><small>Ein Benutzer · geschützt</small></div><button class="icon-button small" id="logoutBtn" title="Abmelden">↪</button></div>
+      </div>
+    </aside>
+
+    <main class="main-panel">
+      <header class="topbar"><button class="icon-button mobile-menu" id="mobileMenuBtn" aria-label="Menü öffnen">☰</button><div class="breadcrumb"><span>NEXUS AI</span><i>/</i><strong id="currentSection">KI-Chat</strong></div><div class="topbar-right"><span class="model-pill"><span class="tiny-pulse"></span><span id="modelLabel">Private session</span></span><button class="icon-button" id="themeBtn" title="Darstellung wechseln">◐</button></div></header>
+
+      <section class="view active" id="chatView">
+        <div class="chat-scroll" id="chatScroll"><div class="welcome" id="welcomePanel"><div class="eyebrow"><span class="eyebrow-line"></span> DEIN DIGITALER COPILOT <span class="eyebrow-line"></span></div><div class="orb-wrap"><div class="orb"><div class="orb-core"></div><div class="orb-ring ring-a"></div><div class="orb-ring ring-b"></div><div class="orb-cross"></div></div></div><h1>Was bauen wir <span>heute?</span></h1><p class="welcome-copy">Dein privater KI-Arbeitsplatz für Ideen, Code, Bilder, Dateien und mehr.</p><div class="suggestion-grid"><button class="suggestion-card" data-prompt="Erkläre mir ein schwieriges Thema einfach und mit Beispielen."><span class="suggestion-icon violet">✳</span><span><strong>Etwas verstehen</strong><small>Kompliziertes einfach erklärt</small></span><b>↗</b></button><button class="suggestion-card" data-prompt="Erstelle eine moderne Website. Plane Aufbau, Design und liefere vollständigen Code."><span class="suggestion-icon blue">⌘</span><span><strong>Code entwickeln</strong><small>Websites und Programme</small></span><b>↗</b></button><button class="suggestion-card" data-prompt="Entwickle kreative Ideen für mein nächstes Projekt. Gib mehrere Ansätze."><span class="suggestion-icon orange">✧</span><span><strong>Ideen entwickeln</strong><small>Kreativität und Konzepte</small></span><b>↗</b></button><button class="suggestion-card" data-prompt="Fasse den folgenden Text übersichtlich zusammen und nenne die wichtigsten Punkte: "><span class="suggestion-icon green">≋</span><span><strong>Dateien auswerten</strong><small>Zusammenfassen und lernen</small></span><b>↗</b></button></div></div><div class="messages" id="messages" aria-live="polite"></div></div>
+        <div class="composer-area"><div class="composer-shell"><textarea id="promptInput" rows="1" placeholder="Schreib deine Nachricht an NEXUS..." aria-label="Nachricht"></textarea><div class="composer-bottom"><div class="composer-tools"><button class="tool-button" id="attachBtn">＋ <span>Datei</span></button><button class="tool-button" id="webBtn">◎ <span>Websuche</span></button><span class="composer-note">Prüfe wichtige Informationen. KI kann Fehler machen.</span></div><div class="send-controls"><button class="icon-button mic-button" id="micBtn" title="Spracheingabe">⌁</button><button class="send-button" id="sendBtn"><span>Senden</span><b>↑</b></button></div></div></div><div class="composer-foot">ENTER ZUM SENDEN <span>·</span> SHIFT + ENTER FÜR NEUE ZEILE</div><input id="chatFileInput" type="file" hidden accept=".txt,.md,.csv,.json,.pdf,.docx"></div>
+      </section>
+
+      <section class="view page-view" id="imageView"><div class="page-heading"><div class="eyebrow left">GENERATIVE VISUALS</div><h1>Image <span>Studio.</span></h1><p>Erstelle Bilder aus deinen Beschreibungen und speichere sie in deiner privaten Galerie.</p></div><div class="studio-layout"><div class="studio-panel"><label for="imagePrompt">BILDPROMPT</label><textarea id="imagePrompt" class="large-textarea" placeholder="Beschreibe dein Bild möglichst genau ..."></textarea><div class="field-row"><div><label for="imageSize">FORMAT</label><select id="imageSize"><option value="1024x1024">Quadrat · 1:1</option><option value="1536x1024">Querformat · 3:2</option><option value="1024x1536">Hochformat · 2:3</option></select></div></div><button class="primary-button" id="generateImageBtn"><span>Bild generieren</span><b>✧</b></button><p class="fine-print">Benötigt einen verbundenen Bildanbieter. Kosten und Inhaltsregeln hängen vom Anbieter ab.</p></div><div class="preview-panel" id="imagePreview"><div class="preview-placeholder"><div class="preview-symbol">✧</div><strong>Dein nächstes Motiv</strong><span>Das Ergebnis erscheint hier.</span></div></div></div></section>
+
+      <section class="view page-view" id="videoView"><div class="page-heading"><div class="eyebrow left">MOTION GENERATION</div><h1>Video <span>Studio.</span></h1><p>Erzeuge kurze KI-Videos über einen angebundenen Replicate-Videodienst.</p></div><div class="studio-layout"><div class="studio-panel"><label for="videoPrompt">VIDEOPROMPT</label><textarea id="videoPrompt" class="large-textarea" placeholder="Beschreibe Szene, Kamerabewegung, Licht und Stil ..."></textarea><div class="field-row"><div><label for="videoRatio">FORMAT</label><select id="videoRatio"><option value="9:16">Hochformat · 9:16</option><option value="16:9">Querformat · 16:9</option></select></div><div><label for="videoDuration">DAUER</label><select id="videoDuration"><option value="5">5 Sekunden</option><option value="10">10 Sekunden</option></select></div></div><button class="primary-button" id="generateVideoBtn"><span>Video erstellen</span><b>▶</b></button><p class="fine-print">Videoerstellung ist rechenintensiv und kann je nach Modell kostenpflichtig sein. Nicht jedes Modell unterstützt alle Einstellungen.</p></div><div class="preview-panel" id="videoPreview"><div class="preview-placeholder"><div class="preview-symbol">▶</div><strong>Motion Preview</strong><span>Dein generiertes Video erscheint hier.</span></div></div></div></section>
+
+      <section class="view page-view" id="filesView"><div class="page-heading"><div class="eyebrow left">DOCUMENT INTELLIGENCE</div><h1>Datei <span>Analyse.</span></h1><p>Lade Dokumente hoch, extrahiere Inhalte und lass NEXUS sie zusammenfassen oder erklären.</p></div><div class="file-drop" id="fileDrop"><input id="fileInput" type="file" accept=".txt,.md,.csv,.json,.pdf,.docx" hidden><div class="drop-icon">⇧</div><strong>Datei hier ablegen oder auswählen</strong><span>Unterstützt: TXT, Markdown, CSV, JSON, PDF und DOCX · maximal 10 MB</span><button class="secondary-button" id="chooseFileBtn">Datei auswählen</button></div><div class="file-result" id="fileResult" hidden><div class="file-meta"><span class="file-icon">▤</span><div><strong id="fileName">Dokument</strong><small id="fileInfo">Bereit zur Analyse</small></div><button class="icon-button" id="removeFileBtn">×</button></div><textarea id="fileQuestion" placeholder="Was soll NEXUS mit der Datei machen? Zum Beispiel: Fasse sie zusammen und erstelle Lernfragen."></textarea><button class="primary-button" id="analyzeFileBtn"><span>Dokument analysieren</span><b>↗</b></button></div><p class="fine-print centered">Dateien werden im Browser ausgelesen und der ausgewählte Text wird zur Analyse an deinen KI-Anbieter gesendet. Lade keine sensiblen Daten hoch, wenn du dessen Datenschutzbedingungen nicht geprüft hast.</p></section>
+
+      <section class="view page-view" id="voiceView"><div class="page-heading"><div class="eyebrow left">VOICE INTERFACE</div><h1>Voice <span>Studio.</span></h1><p>Sprich mit NEXUS oder lass Antworten vorlesen. Die Verfügbarkeit hängt von deinem Browser ab.</p></div><div class="voice-panel"><div class="voice-orb" id="voiceOrb"><span>⌁</span></div><strong id="voiceStatus">Bereit zum Zuhören</strong><p id="voiceTranscript">Tippe auf das Mikrofon, um die Spracheingabe zu starten.</p><div class="voice-actions"><button class="primary-button" id="startVoiceBtn"><span>Mikrofon starten</span><b>⌁</b></button><button class="secondary-button" id="stopVoiceBtn" disabled>Stoppen</button></div><div class="voice-settings"><label for="voiceSelect">STIMME</label><select id="voiceSelect"><option value="">Systemstandard</option></select><label class="switch-row"><input type="checkbox" id="autoSpeak" checked><span>KI-Antworten automatisch vorlesen</span></label></div></div></section>
+
+      <section class="view page-view" id="galleryView"><div class="page-heading"><div class="eyebrow left">YOUR PRIVATE COLLECTION</div><h1>Deine <span>Galerie.</span></h1><p>Hier findest du die Bilder, die du im Image Studio gespeichert hast. Die Galerie liegt lokal in diesem Browser.</p></div><div class="gallery-grid" id="galleryGrid"><div class="empty-state">Noch keine Bilder gespeichert.</div></div></section>
+
+      <section class="view page-view" id="libraryView"><div class="page-heading"><div class="eyebrow left">PRIVATE ARCHIVE</div><h1>Chat <span>Verlauf.</span></h1><p>Deine gespeicherten Unterhaltungen auf diesem Gerät.</p></div><div class="library-panel" id="libraryPanel"></div></section>
+    </main>
+  </div>
+
+  <dialog class="settings-dialog" id="settingsDialog"><form method="dialog" class="dialog-close-row"><span class="eyebrow left">SYSTEM STATUS</span><button class="icon-button" aria-label="Schließen">×</button></form><h2>NEXUS <span>System.</span></h2><p class="dialog-intro">Die Zugangsdaten für KI-Dienste werden ausschließlich auf dem Server hinterlegt. Sie werden nicht an deinen Browser ausgeliefert.</p><div class="service-list" id="serviceList"></div><div class="settings-note"><strong>Konfiguration</strong><p>API-Schlüssel, Modellnamen und Passwort werden in der <code>.env</code>-Datei des Servers eingestellt. Die Website selbst zeigt diese Geheimnisse niemals an.</p></div><button class="secondary-button full-width" id="refreshStatusBtn" type="button">Status aktualisieren</button></dialog>
+  <div class="toast" id="toast" role="status"></div>
+</body>
+</html>

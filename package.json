@@ -1,0 +1,8 @@
+{
+  "name": "nexus-ai-private",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Private, password-protected NEXUS AI web workspace",
+  "scripts": { "start": "node server.js" },
+  "engines": { "node": ">=20" }
+}
